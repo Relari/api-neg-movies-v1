@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pe.com.relari</groupId>
-  <artifactId>quarkus-project</artifactId>
+  <artifactId>api-neg-movies-v1</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.14.0</compiler-plugin.version>
@@ -15,6 +15,8 @@
     <quarkus.platform.version>3.26.1</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
+
+    <jacoco.version>0.8.12</jacoco.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -135,6 +137,37 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <!-- JaCoCo Maven Plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-report</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+<!--        <configuration>-->
+<!--          &lt;!&ndash; Excluir las clases generadas por Quarkus para no incluirlas en el reporte &ndash;&gt;-->
+<!--          <excludes>-->
+<!--            <exclude>**/*PanacheEntityBase*</exclude>-->
+<!--            <exclude>**/*Resource*</exclude>-->
+<!--            <exclude>**/*Service*</exclude>-->
+<!--            <exclude>**/entity/*</exclude>-->
+<!--          </excludes>-->
+<!--        </configuration>-->
       </plugin>
     </plugins>
   </build>

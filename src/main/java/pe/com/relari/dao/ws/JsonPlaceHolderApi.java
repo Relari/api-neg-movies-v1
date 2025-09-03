@@ -1,6 +1,7 @@
 package pe.com.relari.dao.ws;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.PathParam;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import pe.com.relari.config.RequestUUIDHeaderFactory;
 import pe.com.relari.dao.ws.model.UserResponse;
@@ -23,4 +24,8 @@ public interface JsonPlaceHolderApi {
     @Produces(MediaType.APPLICATION_JSON)
     List<UserResponse> users();
 
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    UserResponse getUser(@PathParam("id") Integer id);
 }

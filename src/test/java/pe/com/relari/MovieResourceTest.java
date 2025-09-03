@@ -12,7 +12,7 @@ class MovieResourceTest {
     @Test
     void testHelloEndpoint() {
         given()
-          .when().get("/api/v1/greeting")
+          .when().get("/api/neg/v1/greeting")
           .then()
              .statusCode(200)
              .body(is("Hello World"));

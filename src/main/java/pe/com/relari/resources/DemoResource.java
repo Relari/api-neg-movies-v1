@@ -8,10 +8,8 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import pe.com.relari.config.ErrorProperties;
-import pe.com.relari.dao.ws.JsonPlaceHolderApi;
 
 @Path("/v1")
 public class DemoResource {
@@ -19,17 +17,13 @@ public class DemoResource {
     private static final Logger log = Logger.getLogger(DemoResource.class);
 
     ErrorProperties errorProperties;
-    JsonPlaceHolderApi jsonPlaceHolderApi;
 
     @ConfigProperty(name = "greeting.message")
     String message;
 
     @Inject
-    public DemoResource(
-            ErrorProperties errorProperties,
-            @RestClient JsonPlaceHolderApi jsonPlaceHolderApi) {
+    public DemoResource(ErrorProperties errorProperties) {
         this.errorProperties = errorProperties;
-        this.jsonPlaceHolderApi = jsonPlaceHolderApi;
     }
 
     @GET
