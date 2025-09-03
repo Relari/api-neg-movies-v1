@@ -1,0 +1,22 @@
+quarkus:
+#  http:
+#    port: 8092
+  log:
+    level: INFO
+    category:
+      "org.apache.http":
+        level: TRACE
+  rest-client:
+    json-place-holder-api:
+      url: https://jsonplaceholder.typicode.com
+      scope: jakarta.inject.Singleton
+
+greeting:
+  message: Hello World
+
+app:
+  error:
+    default-message: Generic error message
+    status: 500
+  version: 1.0.0
+  name: Quarkus Application
