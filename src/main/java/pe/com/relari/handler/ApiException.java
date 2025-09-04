@@ -1,13 +1,19 @@
 package pe.com.relari.handler;
 
+import pe.com.relari.model.common.ErrorType;
+
 public class ApiException extends RuntimeException {
 
-    public ApiException(String message) {
+    ErrorType errorType;
+
+    public ApiException(ErrorType errorType, String message) {
         super(message);
+        this.errorType = errorType;
     }
 
-    public ApiException(String message, Throwable cause) {
+    public ApiException(ErrorType errorType, String message, Throwable cause) {
         super(message, cause);
+        this.errorType = errorType;
     }
 
 }

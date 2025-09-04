@@ -7,9 +7,14 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import pe.com.relari.config.ErrorProperties;
+import pe.com.relari.model.common.ApiResponse;
+import pe.com.relari.model.common.ErrorResponse;
+import pe.com.relari.model.common.ErrorType;
+import pe.com.relari.model.common.StatusType;
 
 @Path("/v1")
 public class DemoResource {
@@ -36,4 +41,10 @@ public class DemoResource {
         return message;
     }
 
+    @GET
+    @Path("/error")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response errorResponse() {
+        return ApiResponse.errorResponse(ErrorType.INTERNAL_SERVER_ERROR, errorProperties.defaultMessage());
+    }
 }

@@ -6,8 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum StatusType {
-    OK(200), ERROR(500);
-
-    private final int status;
-
+    OK, ERROR
 }

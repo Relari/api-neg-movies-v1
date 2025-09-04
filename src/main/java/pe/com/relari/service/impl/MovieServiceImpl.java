@@ -6,6 +6,7 @@ import pe.com.relari.dao.MovieDao;
 import pe.com.relari.dao.repository.MovieEntity;
 import pe.com.relari.handler.ApiException;
 import pe.com.relari.model.api.Movie;
+import pe.com.relari.model.common.ErrorType;
 import pe.com.relari.service.MovieService;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class MovieServiceImpl implements MovieService {
                     movie.setDirector(movieEntity.getDirector());
                     return movie;
                 })
-                .orElseThrow(() -> new ApiException("Movie not found: " + id));
+                .orElseThrow(() -> new ApiException(ErrorType.RESOURCE_NOT_FOUND, "Movie not found: " + id));
     }
     @Override
     public void saveMovie(Movie movie) {

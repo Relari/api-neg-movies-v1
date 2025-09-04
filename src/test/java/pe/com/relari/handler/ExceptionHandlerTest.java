@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pe.com.relari.config.ErrorProperties;
+import pe.com.relari.model.common.ErrorType;
+import pe.com.relari.model.common.StatusType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +31,7 @@ class ExceptionHandlerTest {
         Mockito.when(errorProperties.defaultMessage()).thenReturn("Default error message");
         Mockito.when(errorProperties.status()).thenReturn(500);
 
-        var response = exceptionHandler.toResponse(new ApiException("Test exception message"));
+        var response = exceptionHandler.toResponse(new ApiException(ErrorType.INTERNAL_SERVER_ERROR, "Test exception message"));
 
         assertNotNull(response);
         assertEquals(500, response.getStatus());
@@ -44,7 +46,7 @@ class ExceptionHandlerTest {
         Mockito.when(errorProperties.defaultMessage()).thenReturn("Default error message");
         Mockito.when(errorProperties.status()).thenReturn(500);
 
-        var response = exceptionHandler.toResponse(new ApiException("Test exception message", new Throwable("Cause message")) );
+        var response = exceptionHandler.toResponse(new ApiException(ErrorType.INTERNAL_SERVER_ERROR, "Test exception message", new Throwable("Cause message")) );
 
         assertNotNull(response);
         assertEquals(500, response.getStatus());
